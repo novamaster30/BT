@@ -30,5 +30,16 @@ contract Student_management {
             }
         }
         return ("Not Found", "Not Found");
+
     }
+    receive() external payable {
+        emit FallbackCalled(msg.sender, msg.value);
+    }
+
+    fallback() external payable {
+        emit FallbackCalled(msg.sender, msg.value);
+    }
+    
+    event ReceivedEther(address from, uint256 amount);
+    event FallbackCalled(address from, uint256 amount);
 }
